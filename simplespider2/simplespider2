@@ -1,0 +1,77 @@
+# -*- coding: utf-8 -*-
+from tkinter import *  
+import tkinter.messagebox as messagebox
+import urllib.request
+import re
+import tkinter.filedialog 
+import os
+
+savepath='d:/A/'
+def craw(url):
+    h1=urllib.request.urlopen(url).read()
+    h1=str(h1)
+    p2='<img src="https://(.+?\.jpg)"'
+    imglist=re.compile(p2).findall(h1)
+    x=1
+    for imgurl in imglist:
+        imgname=savepath+str(x)+".jpg"
+        imgurl="http://"+imgurl
+        urllib.request.urlretrieve(imgurl,filename=imgname)
+        x+=1
+
+def hello():
+    print(savepath)
+    url = get.get()#输入链接url
+    #url='https://blog.csdn.net/sunhf_csdn/article/details/79848837'#测试用url
+    content=urllib.request.urlopen(url).read()
+    content=content.decode('utf-8')
+    rt = r'<title>(.*?)</title>'
+    rcontent =  re.findall(rt,content,re.S|re.M)
+    for title in rcontent:
+        titletLabel["text"]=title
+    ru = r"(?<=href=\").+?(?=\")|(?<=href=\').+?(?=\')"  
+    link = re.findall(ru ,  content, re.I|re.S|re.M)
+    fp=open(savepath+"https.txt", "w+b")
+    for url in link:
+        if url[0] == 'h':
+            fp.write(url.encode("utf-8")+b'\n')
+    fp.close()
+    craw(url)
+    
+def clear():
+    titletLabel["text"]=''
+    get.delete('0','end')
+
+def readme():
+    fr=open("README.txt", "r")
+    readme=fr.read()
+    messagebox.showinfo('Readme','%s' %readme)#显示输出
+
+def save():
+    diry=tkinter.filedialog.askopenfilename(title=u"选择存储路径")
+    global savepath
+    savepath=tkinter.filedialog.askdirectory() + "/"
+
+app=Tk()
+app.title("极简网页爬虫")#窗口标题
+app.geometry('600x200')
+inputLabel = Label(app,text = '请输入链接:')
+inputLabel.grid(row=0,column=0)
+get = Entry(app,width=60)#输入框
+get.grid(row=1,column=1)
+spiderButton = Button(text = 'spider',command = hello)#spider按钮
+spiderButton.grid(row=1,column=2)
+titleLabel = Label(text = '标题：')
+titleLabel.grid(row=2,column=0)
+titletLabel = Label(text = '')#用于显示爬取的标题
+titletLabel.grid(row=2,column=1)
+clearButton = Button(text = 'clear',command = clear)#清除当前显示的文本
+clearButton.grid(row=2,column=2)
+readmeButton=Button(text='README',command=readme)#打开说明
+readmeButton.grid(row=3,column=0)
+saveButton=Button(text='选择存储路径',command=save)#选择图片与链接的存储路径
+saveButton.grid(row=3,column=1)
+
+app.mainloop()
+
+
