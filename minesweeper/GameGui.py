@@ -61,29 +61,29 @@ class GameGui():
 
     def getimg(self, i, j):
         if self.board[i][j] == -1:
-            return 'icons8-地雷-20.png'
+            return './image/icons8-地雷-20.png'
         elif self.board[i][j] == 0:
-            return '0.png'
+            return './image/0.png'
         elif self.board[i][j] == 1:
-            return '1.png'
+            return './image/1.png'
         elif self.board[i][j] == 2:
-            return '2.png'
+            return './image/2.png'
         elif self.board[i][j] == 3:
-            return '3.png'
+            return './image/3.png'
         elif self.board[i][j] == 4:
-            return '4.png'
+            return './image/4.png'
         elif self.board[i][j] == 5:
-            return '5.png'
+            return './image/5.png'
         elif self.board[i][j] == 6:
-            return '6.png'
+            return './image/6.png'
         elif self.board[i][j] == 7:
-            return '7.png'
+            return './image/7.png'
         elif self.board[i][j] == 8:
-            return '8.png'
+            return './image/8.png'
         elif self.board[i][j] == 9:
-            return 'flag.png'
+            return './image/flag.png'
         elif self.board[i][j] == 10:
-            return 'unknown.png'
+            return './image/unknown.png'
         else:
             print('board error')
             exit(0)
