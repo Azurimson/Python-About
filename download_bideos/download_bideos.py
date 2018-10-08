@@ -62,7 +62,7 @@ class Application():
         self.savepath = tkinter.filedialog.askdirectory() + "/"
 
     def download_one(self, url):
-        common.any_download(url=url,#https://www.bilibili.com/video/av33241179
+        common.any_download(url=url,
                             info_only=False,
                             output_dir=self.savepath,
                             merge=True)
