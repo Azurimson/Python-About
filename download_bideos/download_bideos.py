@@ -82,7 +82,7 @@ class Application():
 
 root = Tk()
 
-root.title("123")
+root.title("download bili_videos")
 root.geometry('500x200')
 Application(root)
 root.mainloop()
