@@ -28,7 +28,7 @@ class Application():
         self.checkbutton.grid(row=1, column=0)
         self.get = Entry(self.root, width=40)
         self.get.grid(row=1, column=1)
-        self.spiderButton = Button(text='spider', command=self.download)
+        self.spiderButton = Button(text='download', command=self.download)
         self.spiderButton.grid(row=1, column=2)
         self.titletLabel = Label(text='')
         self.titletLabel.grid(row=4, column=1)
