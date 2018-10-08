@@ -1,0 +1,4 @@
+利用you-get下载bilibili视频
+在批量下载中，可以下载当页全部视频（个人空间或收藏夹）
+  用的是webdriver chrome分析异步ajax
+IDLE，spyder运行you_get中common会报错，pycharm运行无问题
